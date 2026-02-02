@@ -1,0 +1,710 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER FORCE X - Login</title>
+    <link rel="icon" type="image/x-icon" href="https://iili.io/fZvicva.md.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        :root {
+            --primary: #0d6efd;
+            --secondary: #6c757d;
+            --success: #198754;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #0dcaf0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --cyber-blue: #0066ff;
+            --cyber-green: #00ff88;
+            --cyber-purple: #9d00ff;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(157, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 102, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 102, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid var(--cyber-blue);
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
+        }
+        
+        .brand-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--cyber-blue), var(--cyber-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+            color: var(--cyber-green);
+            font-size: 0.9rem;
+        }
+        
+        .location i {
+            color: var(--cyber-purple);
+        }
+        
+        .login-container {
+            display: flex;
+            width: 100%;
+            max-width: 1000px;
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .login-left {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(13, 17, 38, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, transparent, rgba(0, 102, 255, 0.1));
+            border-bottom-left-radius: 100%;
+        }
+        
+        .login-right {
+            flex: 1.2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .login-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--cyber-blue);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .login-subtitle {
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+            font-weight: 500;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cyber-blue);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            cursor: pointer;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .forgot-password {
+            color: var(--cyber-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password:hover {
+            color: var(--cyber-green);
+            text-decoration: underline;
+        }
+        
+        .btn {
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--cyber-blue), var(--cyber-purple));
+            color: white;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--cyber-purple), var(--cyber-blue));
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .btn-google {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-google:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #aaa;
+        }
+        
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .divider span {
+            padding: 0 15px;
+            font-size: 0.9rem;
+        }
+        
+        .login-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ddd;
+        }
+        
+        .feature i {
+            color: var(--cyber-green);
+            font-size: 1.2rem;
+        }
+        
+        .platform-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .platform {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 102, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .platform i {
+            color: var(--cyber-green);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #aaa;
+            font-size: 0.9rem;
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer a {
+            color: var(--cyber-blue);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            color: var(--cyber-green);
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 992px) {
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .login-left, .login-right {
+                padding: 30px;
+            }
+            
+            .brand-name {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .login-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .brand-name {
+                font-size: 1.8rem;
+            }
+            
+            .login-title {
+                font-size: 1.7rem;
+            }
+            
+            .platform-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating-logo {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Loading animation */
+        .loading {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--cyber-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Error message */
+        .error-message {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid rgba(220, 53, 69, 0.5);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .error-message i {
+            color: var(--danger);
+        }
+        
+        /* Success message */
+        .success-message {
+            background: rgba(25, 135, 84, 0.2);
+            border: 1px solid rgba(25, 135, 84, 0.5);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .success-message i {
+            color: var(--success);
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <img src="https://iili.io/fZvicva.md.png" alt="CYBER FORCE X Logo" class="logo floating-logo">
+                <h1 class="brand-name">CYBER FORCE X</h1>
+            </div>
+            <p class="tagline">Advanced Security Solutions & Cyber Intelligence</p>
+            <div class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>KELANTAN MALAYSIA, GUA MUSANG</span>
+            </div>
+        </div>
+        
+        <div class="login-container">
+            <div class="login-left">
+                <h2 class="login-title">Secure Access Portal</h2>
+                <p class="login-subtitle">Enter your credentials to access the CYBER FORCE X intelligence platform.</p>
+                
+                <div class="login-features">
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Military-grade Encryption</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>High-Speed Connectivity</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-user-secret"></i>
+                        <span>Anonymous Browsing</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-globe"></i>
+                        <span>Global Network Access</span>
+                    </div>
+                </div>
+                
+                <div class="platform-info">
+                    <div class="platform">
+                        <i class="fab fa-android"></i>
+                        <span>Optimized for Android</span>
+                    </div>
+                    <div class="platform">
+                        <i class="fas fa-laptop"></i>
+                        <span>Desktop Compatible</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="login-right">
+                <div class="error-message" id="errorMessage">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="errorText">Invalid username or password. Please try again.</span>
+                </div>
+                
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="successText">Login successful! Redirecting to Blackbox AI...</span>
+                </div>
+                
+                <h2 class="login-title">Member Login</h2>
+                <p class="login-subtitle">Sign in to access CYBER FORCE X resources</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username or Email</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" id="username" class="form-control" placeholder="Enter your username or email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                            <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="remember-forgot">
+                        <div class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="loginButton">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login to CYBER FORCE X</span>
+                    </button>
+                    
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <span>Authenticating...</span>
+                    </div>
+                </form>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <button class="btn btn-google" id="googleLogin">
+                    <i class="fab fa-google"></i>
+                    <span>Continue with Google</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 CYBER FORCE X. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>This is a secure system. Unauthorized access is prohibited.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const loginForm = document.getElementById('loginForm');
+            const googleLoginBtn = document.getElementById('googleLogin');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const loginButton = document.getElementById('loginButton');
+            const loading = document.getElementById('loading');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+            
+            // Handle form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value.trim();
+                
+                // Simple validation
+                if (!username || !password) {
+                    showError('Please enter both username and password');
+                    return;
+                }
+                
+                // Show loading state
+                loginButton.style.display = 'none';
+                loading.style.display = 'flex';
+                hideError();
+                
+                // Simulate authentication process (in real app, this would be server-side)
+                setTimeout(() => {
+                    // For demo purposes, accept any non-empty credentials
+                    if (username && password) {
+                        // Show success message
+                        successMessage.style.display = 'flex';
+                        
+                        // Redirect to Blackbox AI after 2 seconds
+                        setTimeout(() => {
+                            window.location.href = "https://app.blackbox.ai/";
+                        }, 2000);
+                    } else {
+                        // Show error
+                        showError('Invalid credentials. Please try again.');
+                        loginButton.style.display = 'flex';
+                        loading.style.display = 'none';
+                    }
+                }, 1500);
+            });
+            
+            // Google OAuth login
+            googleLoginBtn.addEventListener('click', function() {
+                // Show loading state
+                googleLoginBtn.innerHTML = '<div class="spinner"></div><span>Connecting to Google...</span>';
+                googleLoginBtn.disabled = true;
+                hideError();
+                
+                // In a real implementation, this would trigger the Google OAuth flow
+                // For this demo, we'll simulate a delay and then redirect
+                setTimeout(() => {
+                    // Redirect to the Google OAuth URL provided
+                    window.location.href = "https://accounts.google.com/v3/signin/accountchooser?client_id=985058387028-iaa60lr5e586kvhjp085qcojv3jv2p7h.apps.googleusercontent.com&code_challenge=1MxMtufLeFKN9Tnp-DIKJBRN2hbZDGywbHK1N5zY0Zk&code_challenge_method=S256&nextauth=google&redirect_uri=https%3A%2F%2Fapp.blackbox.ai%2Fapi%2Fauth%2Fcallback%2Fgoogle&response_type=code&scope=openid+profile+email&state=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwia2lkIjoiRTZLSE9RLTdMUE01UWp3empvQzVJTG9saTJWMDh5UzNmM25rQVZ1dUNGdDNDUlFvMWw0aEZLaW5mSmZHbUhIUEVUbmtTa1JqVjFPOVlSYXhIaU81RncifQ..PIjZ0u5cLz9gL2y9DuI0iA.fqZxcq-4bLMf1YbeCc_-0Mwi4CiUxCouIc52Xo3pXSWuGFCTpxkcJpfuyvkAJDQsjsWTukZthZ2IN7nVQitcvvqeld889jugnuBKAerQaHHghqBszBJxt2yyLFvTdrr5dsTTRsDrkjfeGP3bf7IKDx4WQIUvPvI2ALwjYQTYEyx-EcupjNgqK1XpDxhOt_Uv.ljv65f8hbZjOp59OcYSyTqsBDPMqgj7dILiq0W7zkno&dsh=S-1876246611%3A1770066941305208&o2v=2&service=lso&flowName=GeneralOAuthFlow&opparams=%253Fnextauth%253Dgoogle&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hANFs-61BGU4JHdz9PM8mGiINhhrUL4GOwulPs7vhiGWYQw_TKXrjtHKaVddHTky5dEmiHNPiN3-ZzfdyXOI2yfgRAXRi-Y5ynmNsUuVXTf4BPrs-HxXwvqRiHFVDbvFkop1HvnW98_-TtpA_KYeJLMiDrYjbANxxg5I0xEgqpvTrbtnYiAg681UB2mPrljnmWSLyErUKIZpZOfnabnW3v6Nm-_5T9frvgOWBzYR4ZRtTAvgMVGRuah4L8CZUCyIm-Ss8YBZb2UimhTKxNPWlIwXq8aAiUaYlrfeHokbRoacf8V3QT_w_lsGr-S_pDDBTntUezkDaUB076JXlJMVbHY_TYz30NlSFBZOaOUCrwOdLe9mhX76Fij4VhIUoOUnzsVQ80nnwtWdX4Fqis7YtYBxMp1J_I8iyaUqgw959P0_6fTJvT1Q6sRMpSCv2LsLlkc7r4Q4c808w0iFEfzSNokK_dG2Rg%26flowName%3DGeneralOAuthFlow%26as%3DS-1876246611%253A1770066941305208%26client_id%3D985058387028-iaa60lr5e586kvhjp085qcojv3jv2p7h.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&app_domain=https%3A%2F%2Fapp.blackbox.ai";
+                }, 1000);
+            });
+            
+            // Demo credentials for testing
+            document.getElementById('username').addEventListener('focus', function() {
+                if (this.value === '') {
+                    // Pre-fill with demo credentials for testing
+                    this.value = 'cyberforcex@demo.com';
+                    document.getElementById('password').value = 'securepassword123';
+                }
+            });
+            
+            // Helper functions
+            function showError(message) {
+                document.getElementById('errorText').textContent = message;
+                errorMessage.style.display = 'flex';
+                successMessage.style.display = 'none';
+            }
+            
+            function hideError() {
+                errorMessage.style.display = 'none';
+            }
+            
+            // Add some visual effects
+            const inputs = document.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-2px)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
